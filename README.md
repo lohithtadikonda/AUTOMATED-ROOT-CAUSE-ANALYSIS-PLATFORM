@@ -82,3 +82,38 @@ The system performs the following core functions:
 * **FR10:** The system shall notify users when critical failures occur.
 
 ---
+
+## 🛡️ 6. Non-Functional Requirements
+
+* **Performance:** Processing and detection must occur within acceptable time limits.
+* **Reliability:** The system must operate continuously without crashing.
+* **Scalability:** Efficient handling of increasing log/metric volume.
+* **Maintainability:** Modular code structure for easy updates.
+* **Usability:** User-friendly dashboard for non-experts.
+* **Security:** Prevention of unauthorized access to sensitive log data.
+
+---
+
+## 🏗️ 7. System Architecture
+
+### High-Level Flow
+1.  **Monitoring Module:** Collects Log & Metric Data.
+2.  **Analysis Module:**
+    * *Anomaly Detector* (Finds deviations)
+    * *Correlator* (Links events)
+    * *RCA Engine* (Decides cause)
+3.  **Visualization Module:** Dashboard & Alerting.
+
+### Data Requirements
+* **Logs:** Text-based entries with timestamps.
+* **Metrics:** Numeric values with timestamps.
+
+---
+
+## ⚠️ 8. Limitations & Assumptions
+
+* **Accuracy:** Dependent on the quality of input logs and metrics.
+* **Rule-Based:** Detection is limited to predefined rules and thresholds.
+* **Resource Constraints:** Designed to work on limited hardware for academic/testing purposes.
+* **Assumption:** It is assumed that logs are available or can be simulated in the environment.
+
