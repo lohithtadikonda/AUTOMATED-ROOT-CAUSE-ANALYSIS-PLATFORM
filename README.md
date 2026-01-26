@@ -1,91 +1,84 @@
-﻿# AUTOMATED-ROOT-CAUSE-ANALYSIS-PLATFORM
+# 🔍 Automated Root Cause Analysis Platform (ARCA)
 
-1. Introduction
-1.1 Purpose
+## 📌 1. Introduction
 
-The purpose of this document is to define the software requirements for the Automated Root Cause Analysis Platform.
-This system is intended to automatically identify the root cause of system failures by continuously monitoring logs, metrics, and system events.
-This SRS document provides a clear understanding of system functionality, constraints, and requirements for developers, users, and evaluators.
+### 1.1 Purpose
+The purpose of this project is to develop an **Automated Root Cause Analysis Platform**. This system is designed to automatically identify the root cause of system failures by continuously monitoring logs, metrics, and system events. It aims to reduce the reliance on human expertise and manual troubleshooting.
 
-1.2 Scope
+### 1.2 Scope
+In modern software systems, failures often occur due to multiple interconnected issues. This project automates the RCA process by:
+* **Continuously monitoring** logs and metrics.
+* **Detecting anomalies** automatically.
+* **Correlating** related failures.
+* **Identifying** the root cause.
+* **Suggesting** corrective actions.
 
-In modern software systems, failures often occur due to multiple interconnected issues. Manual root cause analysis is time-consuming and depends heavily on human expertise.
-The scope of this project is to automate the process of root cause analysis by continuously collecting system data, detecting anomalies, correlating related issues, identifying the root cause, and suggesting corrective actions.
+---
 
-The system focuses on:
+## 📖 2. Definitions & Acronyms
 
-Continuous monitoring of logs and metrics
+| Term | Description |
+| :--- | :--- |
+| **RCA** | Root Cause Analysis |
+| **Anomaly** | Deviation from normal system behavior |
+| **Metric** | Quantitative system performance data (CPU, RAM, etc.) |
+| **Log** | Record of system or application events |
+| **Sliding Window** | Fixed-size recent data set used for analysis |
 
-Automated anomaly detection
+---
 
-Intelligent correlation of failures
+## ⚙️ 3. Overall Description
 
-Root cause identification
+### 3.1 Product Functions
+The system performs the following core functions:
+1.  **Continuous Data Collection:** Ingests logs and performance metrics.
+2.  **Anomaly Detection:** Uses statistical thresholds to find abnormal behavior.
+3.  **Event Correlation:** Links multiple anomalies based on timestamps.
+4.  **Root Cause ID:** Pinpoints the origin of the failure.
+5.  **Recommendation Engine:** Suggests fixes to the IT Engineer.
+6.  **Visualization:** Displays health and reports on a Web Dashboard.
 
-Recommendation generation
+### 3.2 User Classes
+* **System Administrator:** Monitors system health and views RCA reports.
+* **IT Engineer:** Uses analysis results to resolve failures.
+* **Project Evaluator:** Reviews system design and output.
 
-Dashboard-based visualization
+### 3.3 Operating Environment
+* **OS:** Windows or Linux
+* **Language:** Python (Recommended) or Java
+* **Database:** MySQL or SQLite
+* **Interface:** Web Browser (Chrome, Firefox, Edge)
 
-1.3 Definitions, Acronyms, and Abbreviations
-Term	Description
-RCA	Root Cause Analysis
-Anomaly	Deviation from normal system behavior
-Metric	Quantitative system performance data
-Log	Record of system or application events
-Sliding Window	Fixed-size recent data set used for analysis
-1.4 References
+---
 
-Software Engineering Project Guidelines
+## 🚀 4. System Features
 
-Basic Monitoring and Logging Concepts
+* **Continuous Data Collection:** Fetches data at fixed intervals; reads only new data to avoid duplication.
+* **Log & Metric Monitoring:** Extracts errors/warnings and tracks CPU, Memory, Response Time, etc.
+* **Sliding Window Management:** Maintains recent data to analyze short-term trends.
+* **Anomaly Detection:** Uses threshold-based and statistical techniques.
+* **Event Correlation Engine:** Correlates anomalies based on time and dependency.
+* **Recommendation Engine:** Generates corrective actions based on predefined rules.
+* **Alert System:** Critical issues trigger immediate notifications.
 
-Anomaly Detection Techniques
+---
 
-1.5 Overview
+## 📋 5. Functional Requirements
 
-This document is organized into sections describing the overall system, functional and non-functional requirements, system architecture, interfaces, assumptions, and future enhancements.
+### Data Processing
+* **FR1:** The system shall continuously collect logs and metrics at predefined intervals.
+* **FR2:** The system shall read only newly added log entries.
+* **FR3:** The system shall process CPU, memory, response time, and error metrics.
+* **FR4:** The system shall maintain recent data in a sliding window.
 
-Users have basic technical knowledge
+### Analysis & Core Logic
+* **FR5:** The system shall detect abnormal behavior automatically.
+* **FR6:** The system shall correlate multiple anomalies occurring within the same time window.
+* **FR7:** The system shall identify the most probable root cause.
+* **FR8:** The system shall suggest corrective actions.
 
-3. System Features
-3.1 Continuous Data Collection
+### User Interface
+* **FR9:** The system shall display analysis results through a web dashboard.
+* **FR10:** The system shall notify users when critical failures occur.
 
-The system continuously collects logs and metrics at fixed time intervals.
-Only new data is read to avoid duplication.
-
-3.2 Log Monitoring System
-
-The system monitors application and system logs and extracts error, warning, and informational messages.
-
-3.3 Metric Monitoring System
-
-The system monitors performance metrics such as CPU usage, memory usage, response time, and error rate.
-
-3.4 Sliding Window Data Management
-
-Recent data values are stored in a sliding window to analyze short-term trends and sudden deviations.
-
-3.5 Anomaly Detection Mechanism
-
-The system detects anomalies using threshold-based and statistical techniques to identify abnormal behavior.
-
-3.6 Event Correlation Engine
-
-Detected anomalies are correlated based on time and dependency to identify related failures.
-
-3.7 Root Cause Analysis Module
-
-The system analyzes correlated anomalies and identifies the most probable root cause using predefined rules.
-
-3.8 Recommendation Engine
-
-Corrective actions are generated based on the identified root cause to assist system administrators.
-
-3.9 Dashboard and Visualization
-
-The system provides a web-based dashboard displaying system health, anomalies, root causes, and recommendations.
-
-3.10 Alert and Notification System
-
-Critical issues trigger alerts to notify users for immediate attention.
-
+---
