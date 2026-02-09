@@ -1,18 +1,18 @@
-# 🎯 Assignment 3 Completion Summary
+# Assignment 3 Completion Summary
 
-## ✅ Completed for Automated Root Cause Analysis Platform
+## Completed for Automated Root Cause Analysis Platform
 
 **Project**: Automated Root Cause Analysis Platform (ARCA) for Deployment Errors  
 **Date**: February 9, 2026  
-**Status**: ✅ All components completed successfully
+**Status**:  All components completed successfully
 
 ---
 
-## 📋 What Was Updated
+## What Was Updated
 
 ### Part B: UML Class Diagrams (20 marks)
 
-#### Q1. Key Classes Identification (10 marks) ✅
+#### Q1. Key Classes Identification (10 marks) 
 
 **10 Classes Identified:**
 1. **LogCollector** - Continuous log data collection with incremental reading
@@ -27,18 +27,18 @@
 10. **DataStore** - Persistent storage for anomalies and RCA results
 
 All classes include:
-- ✅ Complete attributes with visibility (private/public)
-- ✅ All methods with parameters and return types
-- ✅ Proper encapsulation and abstraction
+-  Complete attributes with visibility (private/public)
+-  All methods with parameters and return types
+-  Proper encapsulation and abstraction
 
-#### Q2. UML Class Diagram (10 marks) ✅
+#### Q2. UML Class Diagram (10 marks) 
 
 **Features:**
-- ✅ Complete Mermaid diagram with all 10 classes
-- ✅ All relationships clearly shown (11 associations)
-- ✅ Cardinality specifications (1 to 1)
-- ✅ Pipeline architecture visualization
-- ✅ Notes explaining design patterns
+-  Complete Mermaid diagram with all 10 classes
+-  All relationships clearly shown (11 associations)
+-  Cardinality specifications (1 to 1)
+-  Pipeline architecture visualization
+-  Notes explaining design patterns
 
 **Location**: [diagrams/uml_class_diagram.md](Assignment3/diagrams/uml_class_diagram.md)
 
@@ -46,21 +46,21 @@ All classes include:
 
 ### Part C: Implementation (10 marks)
 
-#### Module 1: AnomalyDetector (5 marks) ✅
+#### Module 1: AnomalyDetector (5 marks) 
 
 **File**: `implementations/AnomalyDetector.py`
 
 **Implemented Features:**
-- ✅ Log anomaly detection (ERROR, CRITICAL levels)
-- ✅ Deployment error keyword detection
-- ✅ Metric threshold-based detection
-- ✅ Statistical anomaly detection (mean + std dev)
-- ✅ Severity classification (LOW, MEDIUM, HIGH, CRITICAL)
-- ✅ Anomaly history tracking
-- ✅ Baseline data management
-- ✅ Input validation and error handling
-- ✅ Comprehensive test cases
-- ✅ Full documentation with docstrings
+-  Log anomaly detection (ERROR, CRITICAL levels)
+- Deployment error keyword detection
+-  Metric threshold-based detection
+-  Statistical anomaly detection (mean + std dev)
+-  Severity classification (LOW, MEDIUM, HIGH, CRITICAL)
+-  Anomaly history tracking
+-  Baseline data management
+-  Input validation and error handling
+-  Comprehensive test cases
+-  Full documentation with docstrings
 
 **Lines of Code**: ~450 lines
 
@@ -69,22 +69,22 @@ All classes include:
 python implementations/AnomalyDetector.py
 ```
 
-#### Module 2: RCAEngine (5 marks) ✅
+#### Module 2: RCAEngine (5 marks) 
 
 **File**: `implementations/RCAEngine.py`
 
 **Implemented Features:**
-- ✅ Rule-based root cause identification
-- ✅ Pattern matching for events
-- ✅ Confidence scoring (0.0 to 1.0)
-- ✅ Causal chain generation
-- ✅ Evidence collection from anomalies
-- ✅ Automated recommendation generation
-- ✅ Support for 5+ root cause types
-- ✅ Analysis history tracking
-- ✅ Default rule set included
-- ✅ Comprehensive test cases
-- ✅ Full documentation
+-  Rule-based root cause identification
+-  Pattern matching for events
+-  Confidence scoring (0.0 to 1.0)
+-  Causal chain generation
+-  Evidence collection from anomalies
+-  Automated recommendation generation
+-  Support for 5+ root cause types
+-  Analysis history tracking
+-  Default rule set included
+-  Comprehensive test cases
+-  Full documentation
 
 **Lines of Code**: ~550 lines
 
@@ -95,7 +95,7 @@ python implementations/RCAEngine.py
 
 ---
 
-## 📊 Technical Highlights
+## Technical Highlights
 
 ### Algorithms Implemented
 

@@ -33,13 +33,13 @@ Detects abnormal behavior in system logs and performance metrics using:
 3. **AnomalyDetector**: Main detector class with detection algorithms
 
 ### Features Implemented
-✅ Log-level based anomaly detection (ERROR, CRITICAL)  
-✅ Deployment error keyword detection  
-✅ Metric threshold-based detection (CPU, Memory, Response Time)  
-✅ Statistical anomaly detection using mean and standard deviation  
-✅ Severity classification (LOW, MEDIUM, HIGH, CRITICAL)  
-✅ Anomaly history tracking  
-✅ Baseline data management with sliding window  
+--- Log-level based anomaly detection (ERROR, CRITICAL)  
+--- Deployment error keyword detection  
+--- Metric threshold-based detection (CPU, Memory, Response Time)  
+--- Statistical anomaly detection using mean and standard deviation  
+--- Severity classification (LOW, MEDIUM, HIGH, CRITICAL)  
+--- Anomaly history tracking  
+--- Baseline data management with sliding window  
 
 ### Usage Example
 
@@ -93,7 +93,7 @@ Expected output shows:
 
 ---
 
-## 🧠 Module 2: RCAEngine
+##  Module 2: RCAEngine
 
 **File**: `RCAEngine.py`
 
@@ -111,14 +111,14 @@ Identifies root causes of system failures by:
 4. **RCAEngine**: Main analysis engine with rule-based inference
 
 ### Features Implemented
-✅ Rule-based root cause identification  
-✅ Pattern matching for event correlation  
-✅ Confidence scoring for identified causes  
-✅ Causal chain generation (shows failure progression)  
-✅ Evidence collection and formatting  
-✅ Automated recommendation generation  
-✅ Support for multiple root cause types  
-✅ Analysis history tracking  
+-- Rule-based root cause identification  
+-- Pattern matching for event correlation  
+-- Confidence scoring for identified causes  
+-- Causal chain generation (shows failure progression)  
+-- Evidence collection and formatting  
+-- Automated recommendation generation  
+-- Support for multiple root cause types  
+-- Analysis history tracking  
 
 ### Supported Root Causes
 - **DEPLOYMENT_CONFIGURATION_ERROR**: Deployment misconfigurations
@@ -230,13 +230,13 @@ event = CorrelatedEvent(
 engine = RCAEngine([])
 result = engine.analyze_root_cause([event])
 
-print(f"✅ Root Cause: {result.root_cause}")
-print(f"   Confidence: {result.confidence:.1%}")
+print(f" Root Cause: {result.root_cause}")
+print(f" Confidence: {result.confidence:.1%}")
 ```
 
 ---
 
-## 📊 Key Software Engineering Concepts Demonstrated
+##  Key Software Engineering Concepts Demonstrated
 
 ### 1. **Object-Oriented Design**
 - Encapsulation: Private attributes and methods
@@ -283,7 +283,7 @@ These modules form the core of an automated monitoring and diagnostics system th
 
 ---
 
-## 📚 Dependencies
+##  Dependencies
 
 Both modules use only Python standard library:
 - `typing`: Type hints for better code documentation
@@ -295,7 +295,7 @@ Both modules use only Python standard library:
 
 ---
 
-## ✅ Assignment Completion Checklist
+##  Assignment Completion Checklist
 
 - [x] **Module 1**: AnomalyDetector class with full documentation
 - [x] **Module 2**: RCAEngine class with rule-based analysis
