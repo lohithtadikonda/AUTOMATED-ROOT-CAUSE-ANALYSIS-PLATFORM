@@ -1,11 +1,4 @@
-"""
-AnomalyDetector Module
-Part C - Module 1 Implementation
-CS331 Software Engineering Lab Assignment 3
 
-This module implements anomaly detection for the Automated Root Cause Analysis Platform.
-It detects abnormal behavior in system logs and performance metrics.
-"""
 
 from typing import List, Dict, Optional
 from datetime import datetime
