@@ -1,6 +1,8 @@
-# 🔍 Automated Root Cause Analysis Platform (ARCA)
+#  Automated Root Cause Analysis Platform (ARCA)
 
-## 📌 1. Introduction
+
+
+##  1. Introduction
 
 ### 1.1 Purpose
 The purpose of this project is to develop an **Automated Root Cause Analysis Platform**. This system is designed to automatically identify the root cause of system failures by continuously monitoring logs, metrics, and system events. It aims to reduce the reliance on human expertise and manual troubleshooting.
@@ -15,7 +17,7 @@ In modern software systems, failures often occur due to multiple interconnected 
 
 ---
 
-## 📖 2. Definitions & Acronyms
+##  2. Definitions & Acronyms
 
 | Term | Description |
 | :--- | :--- |
@@ -27,7 +29,7 @@ In modern software systems, failures often occur due to multiple interconnected 
 
 ---
 
-## ⚙️ 3. Overall Description
+##  3. Overall Description
 
 ### 3.1 Product Functions
 The system performs the following core functions:
@@ -51,7 +53,7 @@ The system performs the following core functions:
 
 ---
 
-## 🚀 4. System Features
+##  4. System Features
 
 * **Continuous Data Collection:** Fetches data at fixed intervals; reads only new data to avoid duplication.
 * **Log & Metric Monitoring:** Extracts errors/warnings and tracks CPU, Memory, Response Time, etc.
@@ -63,7 +65,7 @@ The system performs the following core functions:
 
 ---
 
-## 📋 5. Functional Requirements
+##  5. Functional Requirements
 
 ### Data Processing
 * **FR1:** The system shall continuously collect logs and metrics at predefined intervals.
@@ -83,7 +85,7 @@ The system performs the following core functions:
 
 ---
 
-## 🛡️ 6. Non-Functional Requirements
+##  6. Non-Functional Requirements
 
 * **Performance:** Processing and detection must occur within acceptable time limits.
 * **Reliability:** The system must operate continuously without crashing.
@@ -94,7 +96,7 @@ The system performs the following core functions:
 
 ---
 
-## 🏗️ 7. System Architecture
+##  7. System Architecture
 
 ### High-Level Flow
 1.  **Monitoring Module:** Collects Log & Metric Data.
@@ -110,7 +112,7 @@ The system performs the following core functions:
 
 ---
 
-## ⚠️ 8. Limitations & Assumptions
+##  8. Limitations & Assumptions
 
 * **Accuracy:** Dependent on the quality of input logs and metrics.
 * **Rule-Based:** Detection is limited to predefined rules and thresholds.
