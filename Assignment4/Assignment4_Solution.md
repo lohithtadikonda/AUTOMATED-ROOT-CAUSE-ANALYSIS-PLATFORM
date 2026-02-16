@@ -129,7 +129,7 @@
      - Fixed-size data retention
      - Automatic old data eviction
      - Efficient memory management
-   - **Dependencies**: None (utility component)
+   - **Dependencies**: None(utility component)
 
 #### **4. AnomalyDetector**
    - **Type**: Analysis Component
