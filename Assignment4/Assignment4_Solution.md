@@ -255,17 +255,17 @@ graph TB
     LC --> SW
     MC --> SW
     
-    style UI fill:#e1f5ff
-    style DC fill:#e1f5ff
-    style AS fill:#e1f5ff
-    style RCA fill:#fff4e1
-    style RE fill:#fff4e1
-    style EC fill:#fff4e1
-    style AD fill:#f0ffe1
-    style LC fill:#ffe1f5
-    style MC fill:#ffe1f5
-    style SW fill:#ffe1f5
-    style DS fill:#e8e8e8
+    style UI fill:#000,stroke:#000,color:#fff
+    style DC fill:#000,stroke:#000,color:#fff
+    style AS fill:#000,stroke:#000,color:#fff
+    style RCA fill:#000,stroke:#000,color:#fff
+    style RE fill:#000,stroke:#000,color:#fff
+    style EC fill:#000,stroke:#000,color:#fff
+    style AD fill:#000,stroke:#000,color:#fff
+    style LC fill:#000,stroke:#000,color:#fff
+    style MC fill:#000,stroke:#000,color:#fff
+    style SW fill:#000,stroke:#000,color:#fff
+    style DS fill:#000,stroke:#000,color:#fff
 ```
 
 ---
