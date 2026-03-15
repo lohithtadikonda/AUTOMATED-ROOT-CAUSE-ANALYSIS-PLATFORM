@@ -10,6 +10,9 @@ from datetime import datetime
 import os
 from dotenv import load_dotenv
 import sys
+import jwt
+import requests as http_requests
+from functools import wraps
 
 # Add modules directory to path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'modules'))
@@ -53,6 +56,85 @@ rca_engine = RCAEngine([])
 event_correlator = EventCorrelator(window_size_minutes=5)
 recommendation_engine = RecommendationEngine({})
 alert_system = AlertSystem()
+
+# ==========================
+# Clerk JWT Auth Middleware
+# ==========================
+
+_jwks_cache = {}
+
+def _get_jwks():
+    """Fetch Clerk's public keys (cached)."""
+    jwks_url = os.getenv('CLERK_JWKS_URL')
+    if not jwks_url:
+        return None
+    if _jwks_cache.get('keys'):
+        return _jwks_cache['keys']
+    try:
+        resp = http_requests.get(jwks_url, timeout=5)
+        resp.raise_for_status()
+        _jwks_cache['keys'] = resp.json().get('keys', [])
+        return _jwks_cache['keys']
+    except Exception:
+        return None
+
+
+def _verify_token(token):
+    """Verify Clerk JWT and return payload, or None on failure."""
+    keys = _get_jwks()
+    if not keys:
+        # CLERK_JWKS_URL not configured — skip auth (dev mode)
+        return {'sub': 'dev', 'public_metadata': {'role': 'admin'}}
+    try:
+        header = jwt.get_unverified_header(token)
+        kid = header.get('kid')
+        public_key = None
+        for key_data in keys:
+            if key_data.get('kid') == kid:
+                public_key = jwt.algorithms.RSAAlgorithm.from_jwk(key_data)
+                break
+        if public_key is None:
+            return None
+        payload = jwt.decode(token, public_key, algorithms=['RS256'], options={'verify_aud': False})
+        return payload
+    except Exception:
+        return None
+
+
+def require_auth(f):
+    """Decorator: requires a valid Clerk JWT."""
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth_header = request.headers.get('Authorization', '')
+        if not auth_header.startswith('Bearer '):
+            return jsonify({'error': 'Authentication required'}), 401
+        token = auth_header.split(' ', 1)[1]
+        payload = _verify_token(token)
+        if payload is None:
+            return jsonify({'error': 'Invalid or expired token'}), 401
+        request.clerk_user = payload
+        return f(*args, **kwargs)
+    return decorated
+
+
+def require_admin(f):
+    """Decorator: requires admin role in Clerk public metadata."""
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth_header = request.headers.get('Authorization', '')
+        if not auth_header.startswith('Bearer '):
+            return jsonify({'error': 'Authentication required'}), 401
+        token = auth_header.split(' ', 1)[1]
+        payload = _verify_token(token)
+        if payload is None:
+            return jsonify({'error': 'Invalid or expired token'}), 401
+        role = (payload.get('public_metadata') or {}).get('role', '')
+        if role != 'admin':
+            return jsonify({'error': 'Admin access required'}), 403
+        request.clerk_user = payload
+        return f(*args, **kwargs)
+    return decorated
+
 
 # ==========================
 # Health & Status Endpoints

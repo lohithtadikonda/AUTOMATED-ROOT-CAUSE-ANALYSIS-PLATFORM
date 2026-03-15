@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { UserButton, useUser } from '@clerk/clerk-react';
 import './Navbar.css';
 
 function Navbar() {
   const location = useLocation();
+  const { user } = useUser();
+  const isAdmin = user?.publicMetadata?.role === 'admin';
 
   const isActive = (path) => {
     return location.pathname === path ? 'active' : '';
@@ -43,7 +46,20 @@ function Navbar() {
               Alerts
             </Link>
           </li>
+          {isAdmin && (
+            <li>
+              <Link to="/admin" className={`nav-link admin-link ${isActive('/admin')}`}>
+                Admin Panel
+              </Link>
+            </li>
+          )}
         </ul>
+
+        <div className="navbar-user">
+          {isAdmin && <span className="role-badge admin">Admin</span>}
+          {user && !isAdmin && <span className="role-badge user">User</span>}
+          <UserButton afterSignOutUrl="/" />
+        </div>
       </div>
     </nav>
   );

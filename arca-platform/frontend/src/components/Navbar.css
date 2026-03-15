@@ -62,6 +62,41 @@
   color: white;
 }
 
+.admin-link {
+  color: #f39c12 !important;
+}
+
+.admin-link.active {
+  background-color: #e67e22 !important;
+  color: white !important;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 16px;
+}
+
+.role-badge {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.role-badge.admin {
+  background-color: #e67e22;
+  color: white;
+}
+
+.role-badge.user {
+  background-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.9);
+}
+
 @media (max-width: 768px) {
   .navbar-container {
     flex-direction: column;
@@ -79,5 +114,10 @@
   .nav-link {
     padding: 8px 12px;
     font-size: 14px;
+  }
+
+  .navbar-user {
+    margin-top: 10px;
+    margin-left: 0;
   }
 }

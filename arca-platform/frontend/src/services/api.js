@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useAuth } from '@clerk/clerk-react';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
@@ -8,6 +9,18 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+// Call this once at app startup to wire up the token interceptor
+export function useApiAuth() {
+  const { getToken } = useAuth();
+  api.interceptors.request.use(async (config) => {
+    try {
+      const token = await getToken();
+      if (token) config.headers.Authorization = `Bearer ${token}`;
+    } catch (_) {}
+    return config;
+  });
+}
 
 // Health & Status
 export const getHealth = () => api.get('/health');

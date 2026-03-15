@@ -1,0 +1,157 @@
+.admin-panel {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.access-denied {
+  text-align: center;
+  padding: 80px 40px;
+  color: #e74c3c;
+}
+
+.denied-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.access-denied h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.role-badge-large {
+  background-color: #e67e22;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  align-self: center;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 32px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #ecf0f1;
+}
+
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.admin-stat-card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  border-left: 4px solid #3498db;
+}
+
+.admin-stat-card.critical { border-left-color: #e74c3c; }
+.admin-stat-card.high     { border-left-color: #e67e22; }
+.admin-stat-card.warn     { border-left-color: #f39c12; }
+
+.stat-number {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #7f8c8d;
+  margin-top: 4px;
+}
+
+.admin-info-card {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px 24px;
+}
+
+.admin-info-card h3 {
+  margin: 0 0 12px;
+  color: #2c3e50;
+  font-size: 16px;
+}
+
+.steps-list {
+  padding-left: 20px;
+  color: #555;
+  line-height: 2;
+  margin: 0 0 10px;
+}
+
+.code-inline {
+  background: #e8ecef;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 13px;
+  color: #c0392b;
+}
+
+.admin-table-wrapper {
+  overflow-x: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-table th {
+  background: #f8f9fa;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+  border-bottom: 2px solid #dee2e6;
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #555;
+}
+
+.admin-table tbody tr:hover {
+  background: #f8f9fc;
+}
+
+.no-data {
+  text-align: center;
+  color: #aaa;
+  padding: 32px;
+}
+
+.severity-badge {
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.severity-badge.critical { background: #fde8e8; color: #c0392b; }
+.severity-badge.high     { background: #fef0e6; color: #d35400; }
+.severity-badge.medium   { background: #fef9e7; color: #b7950b; }
+.severity-badge.low      { background: #eafaf1; color: #1e8449;  }
+
+.status-ok   { color: #27ae60; font-weight: 600; }
+.status-warn { color: #e67e22; font-weight: 600; }
