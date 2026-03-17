@@ -1,4 +1,5 @@
 // DONE BY PRIYANSHU KUMAR
+BACKEND DONE BY LOHITH
 
 # Assignment 6 - User Interface Design and Implementation
 
