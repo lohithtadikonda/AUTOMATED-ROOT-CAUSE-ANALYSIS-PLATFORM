@@ -1,9 +1,3 @@
-"""
-RCA Engine Module
-Identifies root causes of system failures by analyzing correlated events
-and applying predefined rules
-"""
-
 from typing import List, Dict, Optional
 from datetime import datetime, timedelta
 from dataclasses import dataclass
@@ -11,7 +5,6 @@ from dataclasses import dataclass
 
 @dataclass
 class CorrelatedEvent:
-    """Group of related anomalies"""
     anomalies: List
     correlation_score: float
     time_window: str
@@ -20,7 +13,6 @@ class CorrelatedEvent:
 
 @dataclass
 class Rule:
-    """RCA rule definition"""
     rule_id: str
     pattern: Dict[str, any]
     root_cause: str
@@ -30,7 +22,6 @@ class Rule:
 
 @dataclass
 class RCAResult:
-    """Root cause analysis result"""
     root_cause: str
     confidence: float
     affected_components: List[str]
@@ -41,19 +32,8 @@ class RCAResult:
 
 
 class RCAEngine:
-    """
-    RCAEngine Class
-    Identifies root causes of system failures by analyzing correlated events
-    and applying predefined rules
-    """
     
     def __init__(self, rules: List[Rule]):
-        """
-        Initialize RCA Engine
-        
-        Args:
-            rules: List of Rule objects for root cause identification
-        """
         if not isinstance(rules, list):
             raise ValueError("Rules must be a list")
         
@@ -62,15 +42,6 @@ class RCAEngine:
         self.analysis_history: List[RCAResult] = []
     
     def analyze_root_cause(self, correlated_events: List[CorrelatedEvent]) -> RCAResult:
-        """
-        Analyze correlated events to identify root cause
-        
-        Args:
-            correlated_events: List of CorrelatedEvent objects
-        
-        Returns:
-            RCAResult object with identified root cause
-        """
         if not correlated_events:
             return RCAResult(
                 root_cause="UNKNOWN",
@@ -212,16 +183,6 @@ class RCAEngine:
         return True
     
     def generate_causal_chain(self, root_cause: str, anomalies: List) -> List[str]:
-        """
-        Generate causal chain explaining how root cause led to anomalies
-        
-        Args:
-            root_cause: Identified root cause
-            anomalies: List of Anomaly objects
-        
-        Returns:
-            List of causal steps
-        """
         chains = {
             'DEPLOYMENT_CONFIGURATION_ERROR': [
                 "Incorrect deployment configuration",
@@ -262,16 +223,6 @@ class RCAEngine:
         ])
     
     def _calculate_confidence(self, rule: Rule, correlated_events: List[CorrelatedEvent]) -> float:
-        """
-        Calculate confidence score for a rule match
-        
-        Args:
-            rule: Matched rule
-            correlated_events: Correlated events
-        
-        Returns:
-            Confidence score between 0 and 1
-        """
         base_confidence = rule.confidence
         
         # Adjust confidence based on correlation scores
@@ -283,15 +234,6 @@ class RCAEngine:
         return min(adjusted_confidence, 1.0)
     
     def _collect_evidence(self, anomalies: List) -> List[Dict]:
-        """
-        Collect evidence from anomalies
-        
-        Args:
-            anomalies: List of anomaly objects
-        
-        Returns:
-            List of evidence dictionaries
-        """
         evidence = []
         
         for anomaly in anomalies:
@@ -313,15 +255,6 @@ class RCAEngine:
         return evidence
     
     def _generate_recommendations(self, root_cause: str) -> List[str]:
-        """
-        Generate recommendations based on root cause
-        
-        Args:
-            root_cause: Identified root cause
-        
-        Returns:
-            List of recommendation strings
-        """
         recommendations = {
             'DEPLOYMENT_CONFIGURATION_ERROR': [
                 "Review and validate deployment configuration files",
@@ -460,7 +393,7 @@ if __name__ == "__main__":
     # Analyze
     result = engine.analyze_root_cause([correlated_event])
     
-    print(f"✅ Root Cause: {result.root_cause}")
-    print(f"✅ Confidence: {result.confidence}")
-    print(f"✅ Recommendations: {len(result.recommendations)}")
-    print("✅ RCAEngine tests passed!")
+    print(f"Root Cause: {result.root_cause}")
+    print(f"Confidence: {result.confidence}")
+    print(f"Recommendations: {len(result.recommendations)}")
+    print("RCAEngine tests passed!")
