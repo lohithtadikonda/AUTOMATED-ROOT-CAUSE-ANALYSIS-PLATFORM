@@ -1,8 +1,4 @@
-"""
-Anomaly Detector Module
-Detects anomalies in system logs and metrics using threshold-based 
-and statistical methods
-"""
+# DONE BY PRIYANSHU kumar (2301163)
 
 from typing import List, Dict, Optional
 from datetime import datetime
@@ -10,11 +6,10 @@ import statistics
 
 
 class Anomaly:
-    """Represents a detected anomaly"""
     def __init__(self, anomaly_type: str, severity: str, value: float, 
                  metric_name: str, timestamp: datetime, description: str):
         self.anomaly_type = anomaly_type
-        self.severity = severity  # "LOW", "MEDIUM", "HIGH", "CRITICAL"
+        self.severity = severity
         self.value = value
         self.metric_name = metric_name
         self.timestamp = timestamp
@@ -22,7 +17,6 @@ class Anomaly:
         self.id = f"{metric_name}_{timestamp.strftime('%Y%m%d_%H%M%S')}"
     
     def to_dict(self):
-        """Convert anomaly to dictionary"""
         return {
             'id': self.id,
             'type': self.anomaly_type,
@@ -35,7 +29,6 @@ class Anomaly:
 
 
 class Threshold:
-    """Threshold configuration for anomaly detection"""
     def __init__(self, min_value: Optional[float] = None, 
                  max_value: Optional[float] = None,
                  std_dev_multiplier: float = 2.0):
@@ -45,37 +38,17 @@ class Threshold:
 
 
 class AnomalyDetector:
-    """
-    AnomalyDetector Class
-    Detects anomalies in system logs and metrics using threshold-based 
-    and statistical methods
-    """
     
     def __init__(self, thresholds: Dict[str, Threshold]):
-        """
-        Initialize AnomalyDetector
-        
-        Args:
-            thresholds: Dictionary mapping metric names to Threshold objects
-        """
         if not isinstance(thresholds, dict):
             raise ValueError("Thresholds must be a dictionary")
         
         self.thresholds = thresholds
-        self.detection_algorithm = "hybrid"  # threshold + statistical
+        self.detection_algorithm = "hybrid"
         self.anomaly_history: List[Anomaly] = []
         self._baseline_data: Dict[str, List[float]] = {}
     
     def detect_log_anomalies(self, logs: List[Dict]) -> List[Anomaly]:
-        """
-        Detect anomalies in log entries
-        
-        Args:
-            logs: List of log entry dictionaries with 'level', 'message', 'timestamp'
-        
-        Returns:
-            List of detected Anomaly objects
-        """
         if not logs:
             return []
         
@@ -103,12 +76,10 @@ class AnomalyDetector:
             
             message_lower = message.lower()
             
-            # Detect ERROR level logs
             if level == 'ERROR':
                 error_count += 1
                 severity = 'HIGH'
                 
-                # Check for deployment-specific errors
                 for keyword in deployment_keywords:
                     if keyword in message_lower:
                         severity = 'CRITICAL'
@@ -124,7 +95,6 @@ class AnomalyDetector:
                 )
                 anomalies.append(anomaly)
             
-            # Detect CRITICAL level logs
             elif level == 'CRITICAL':
                 critical_count += 1
                 anomaly = self._create_anomaly_record(
@@ -137,7 +107,6 @@ class AnomalyDetector:
                 )
                 anomalies.append(anomaly)
             
-            # Detect deployment error keywords in any log level
             elif level in ['WARNING', 'WARN', 'INFO']:
                 for keyword in deployment_keywords:
                     if keyword in message_lower:
@@ -152,21 +121,10 @@ class AnomalyDetector:
                         anomalies.append(anomaly)
                         break
         
-        # Store in history
         self.anomaly_history.extend(anomalies)
-        
         return anomalies
     
     def detect_metric_anomalies(self, metrics: Dict[str, float]) -> List[Anomaly]:
-        """
-        Detect anomalies in performance metrics
-        
-        Args:
-            metrics: Dictionary of metric name to value
-        
-        Returns:
-            List of detected Anomaly objects
-        """
         if not metrics:
             return []
         
@@ -174,22 +132,18 @@ class AnomalyDetector:
         timestamp = datetime.now()
         
         for metric_name, value in metrics.items():
-            # Get threshold for this metric
             threshold = self.thresholds.get(metric_name)
             
             if not threshold:
                 continue
             
-            # Update baseline data
             if metric_name not in self._baseline_data:
                 self._baseline_data[metric_name] = []
             self._baseline_data[metric_name].append(value)
             
-            # Keep only last 100 data points
             if len(self._baseline_data[metric_name]) > 100:
                 self._baseline_data[metric_name] = self._baseline_data[metric_name][-100:]
             
-            # Threshold-based detection
             anomaly_detected = False
             severity = 'LOW'
             description = ""
@@ -199,7 +153,6 @@ class AnomalyDetector:
                 excess = value - threshold.max_value
                 percent = (excess / threshold.max_value) * 100
                 
-                # Calculate severity based on how much threshold is exceeded
                 if percent > 50:
                     severity = 'CRITICAL'
                 elif percent > 25:
@@ -216,7 +169,6 @@ class AnomalyDetector:
                 severity = 'MEDIUM'
                 description = f"{metric_name} below threshold: {value:.2f} < {threshold.min_value}"
             
-            # Statistical detection (if enough baseline data)
             if not anomaly_detected and len(self._baseline_data[metric_name]) >= 10:
                 mean = statistics.mean(self._baseline_data[metric_name])
                 stdev = statistics.stdev(self._baseline_data[metric_name])
@@ -244,32 +196,13 @@ class AnomalyDetector:
                 )
                 anomalies.append(anomaly)
         
-        # Store in history
         self.anomaly_history.extend(anomalies)
-        
         return anomalies
     
     def set_threshold(self, metric: str, threshold: Threshold):
-        """
-        Set or update threshold for a metric
-        
-        Args:
-            metric: Metric name
-            threshold: Threshold object
-        """
         self.thresholds[metric] = threshold
     
     def is_anomaly(self, value: float, metric: str) -> bool:
-        """
-        Check if a value is anomalous for a given metric
-        
-        Args:
-            value: Metric value to check
-            metric: Metric name
-        
-        Returns:
-            True if anomalous, False otherwise
-        """
         threshold = self.thresholds.get(metric)
         if not threshold:
             return False
@@ -283,40 +216,16 @@ class AnomalyDetector:
         return False
     
     def get_anomaly_history(self, limit: Optional[int] = None) -> List[Anomaly]:
-        """
-        Get anomaly history
-        
-        Args:
-            limit: Optional limit on number of anomalies to return
-        
-        Returns:
-            List of Anomaly objects
-        """
         if limit:
             return self.anomaly_history[-limit:]
         return self.anomaly_history
     
     def clear_history(self):
-        """Clear anomaly history"""
         self.anomaly_history = []
     
     def _create_anomaly_record(self, anomaly_type: str, severity: str, 
                                 value: float, metric_name: str, 
                                 timestamp: datetime, description: str) -> Anomaly:
-        """
-        Create an anomaly record
-        
-        Args:
-            anomaly_type: Type of anomaly
-            severity: Severity level
-            value: Metric value
-            metric_name: Name of the metric
-            timestamp: Timestamp of detection
-            description: Description of the anomaly
-        
-        Returns:
-            Anomaly object
-        """
         return Anomaly(
             anomaly_type=anomaly_type,
             severity=severity,
@@ -327,21 +236,17 @@ class AnomalyDetector:
         )
 
 
-# Test code
 if __name__ == "__main__":
     print("Testing AnomalyDetector...")
     
-    # Create thresholds
     thresholds = {
         'cpu_usage': Threshold(min_value=0, max_value=80),
         'memory_usage': Threshold(min_value=0, max_value=85),
         'response_time': Threshold(min_value=0, max_value=2000),
     }
     
-    # Initialize detector
     detector = AnomalyDetector(thresholds)
     
-    # Test log anomaly detection
     test_logs = [
         {'level': 'ERROR', 'message': 'Deployment failed - connection timeout', 'timestamp': datetime.now()},
         {'level': 'INFO', 'message': 'Application started', 'timestamp': datetime.now()},
@@ -349,9 +254,8 @@ if __name__ == "__main__":
     ]
     
     log_anomalies = detector.detect_log_anomalies(test_logs)
-    print(f"✅ Detected {len(log_anomalies)} log anomalies")
+    print(f"Detected {len(log_anomalies)} log anomalies")
     
-    # Test metric anomaly detection
     test_metrics = {
         'cpu_usage': 95.5,
         'memory_usage': 78.0,
@@ -359,6 +263,6 @@ if __name__ == "__main__":
     }
     
     metric_anomalies = detector.detect_metric_anomalies(test_metrics)
-    print(f"✅ Detected {len(metric_anomalies)} metric anomalies")
+    print(f"Detected {len(metric_anomalies)} metric anomalies")
     
-    print("✅ AnomalyDetector tests passed!")
+    print("AnomalyDetector tests passed!")
