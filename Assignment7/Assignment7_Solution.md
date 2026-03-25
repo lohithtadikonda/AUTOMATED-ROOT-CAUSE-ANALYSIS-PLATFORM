@@ -1,8 +1,6 @@
 # Assignment 7 Solution - Business Logic Layer (BLL)
 
-**Project:** ARCA (Automated Root Cause Analysis) Platform  
-**Student:** Shivankit Jaiswal  
-**Based on code in:** `arca-platform/backend` and `arca-platform/frontend`
+**Project:** ARCA (Automated Root Cause Analysis) Platform   
 
 ---
 
@@ -196,10 +194,4 @@ Conclusion: The project clearly handles transformation at object, timestamp, ide
 
 ---
 
-## Final Summary
 
-- The ARCA project has a clearly implemented Business Logic Layer using modular Python components.
-- These BLL modules are actively connected to existing React presentation components via REST API endpoints.
-- Business rules, validation, and data transformation are concretely implemented and observable in current project files.
-
-This satisfies Q1 and Q2 requirements for Assignment 7 using your existing ARCA platform implementation.
