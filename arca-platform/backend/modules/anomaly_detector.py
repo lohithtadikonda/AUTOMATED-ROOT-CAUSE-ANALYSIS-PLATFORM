@@ -57,7 +57,7 @@ class AnomalyDetector:
         critical_count = 0
         deployment_keywords = [
             'deployment failed', 'deploy error', 'rollback', 
-            'connection refused', 'timeout', 'out of memory',
+            'connection refused', 'connection timeout', 'request timeout', 'out of memory',
             'permission denied', 'authentication failed'
         ]
         

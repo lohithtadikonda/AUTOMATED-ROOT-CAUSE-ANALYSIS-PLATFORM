@@ -85,10 +85,11 @@ class RCAEngine:
             evidence = self._collect_evidence(all_anomalies)
             
             # Get affected components
-            affected_components = list(set([
-                ce.affected_components for ce in correlated_events
-            ]))
-            affected_components = [item for sublist in affected_components for item in sublist]
+            affected_components = list(set(
+                comp
+                for ce in correlated_events
+                for comp in ce.affected_components
+            ))
             
             # Generate recommendations
             recommendations = self._generate_recommendations(best_cause['cause'])

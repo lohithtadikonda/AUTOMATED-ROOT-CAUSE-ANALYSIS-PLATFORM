@@ -73,7 +73,7 @@ class LogCollector:
         logs = []
         
         try:
-            with open(self.log_file_path, 'r', encoding='utf-8') as f:
+            with open(self.log_file_path, 'r', encoding='utf-8', errors='replace') as f:
                 # Move to last read position
                 f.seek(self.last_read_position)
                 
@@ -90,6 +90,13 @@ class LogCollector:
         
         except Exception as e:
             print(f"❌ Error reading logs: {e}")
+            # Ensure position advances even on error to avoid re-reading bad data
+            try:
+                with open(self.log_file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                    f.seek(0, os.SEEK_END)
+                    self.last_read_position = f.tell()
+            except Exception:
+                pass
         
         return logs
     
