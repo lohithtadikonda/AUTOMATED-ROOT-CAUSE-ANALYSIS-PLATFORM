@@ -48,7 +48,7 @@ The system performs the following core functions:
 ### 3.3 Operating Environment
 * **OS:** Windows or Linux
 * **Language:** Python,Java
-* **Database:** MySQL or SQLite
+* **Database:** MongoDB
 * **Interface:** Web Browser (Chrome, Firefox, Edge)
 
 ---
