@@ -2,7 +2,7 @@
 ## CS 331 - Software Engineering Lab
 
 **Project:** ARCA Platform (Automated Root Cause Analysis Platform)  
-**Student:** Shivankit Jaiswal  
+**Student:** Shivankit Jaiswal , Lohith Aditya Tadikonda
 **Date:** April 26, 2026
 
 ---
